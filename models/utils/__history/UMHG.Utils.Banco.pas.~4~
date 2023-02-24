@@ -1,0 +1,27 @@
+unit UMHG.Utils.Banco;
+
+interface
+
+uses
+  FireDac.Comp.Client,
+  FireDAC.Phys.MySQL,
+  FireDac.DApt,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Async,
+  Data.DB;
+
+type
+  TUtilBanco = class
+  private
+    class var FConexao: TFDConnection;
+
+    class procedure AbrirConexao;
+    class procedure FecharConexao;
+  public
+    class procedure InserirRegistro;
+    class function ExecutarConsulta: TObject; //Mais tarde alterar para classe pai dos bancos de dados
+    class procedure RemoverRegistro;
+  end;
+implementation
+
+end.

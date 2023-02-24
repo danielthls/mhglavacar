@@ -34,7 +34,7 @@ begin
   FConexao.Open;
 end;
 
-class function TUtilBanco.ExecutarConsulta(sSql: String): TObject;
+class function TUtilBanco.ExecutarConsulta: TObject;
 begin
 
 end;

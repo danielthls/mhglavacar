@@ -1,4 +1,4 @@
-unit UMHG.Utils.Banco;
+﻿unit UMHG.Utils.Banco;
 
 interface
 
@@ -19,7 +19,7 @@ type
     class procedure FecharConexao;
   public
     class procedure InserirRegistro;
-    class function ExecutarConsulta(sSql: String): TObject; //Mais tarde alterar para classe pai dos bancos de dados
+    class function ExecutarConsulta: TObject; //Mais tarde alterar para classe pai dos bancos de dados
     class procedure RemoverRegistro;
   end;
 implementation
@@ -29,12 +29,12 @@ implementation
 class procedure TUtilBanco.AbrirConexao;
 begin
   FConexao := TFDConnection.Create(nil);
-  FConexao.DriverName := 'SQLite';
-  FConexao.Params.Database := 'C:\sqlite\mhgCopia.db'; //Colocar um caminho que possa ser alterado depois
-  FConexao.Open;
+  FDConnection.DriverName := 'SQLite';
+  FDConnection.Params.Database := 'C:\sqlite\mhgCopia.db';
+  FDConnection.Open;
 end;
 
-class function TUtilBanco.ExecutarConsulta(sSql: String): TObject;
+class function TUtilBanco.ExecutarConsulta: TObject;
 begin
 
 end;

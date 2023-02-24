@@ -19,7 +19,7 @@ type
     class procedure FecharConexao;
   public
     class procedure InserirRegistro;
-    class function ExecutarConsulta(sSql: String): TObject; //Mais tarde alterar para classe pai dos bancos de dados
+    class function ExecutarConsulta: TObject; //Mais tarde alterar para classe pai dos bancos de dados
     class procedure RemoverRegistro;
   end;
 implementation
@@ -34,7 +34,7 @@ begin
   FConexao.Open;
 end;
 
-class function TUtilBanco.ExecutarConsulta(sSql: String): TObject;
+class function TUtilBanco.ExecutarConsulta: TObject;
 begin
 
 end;
