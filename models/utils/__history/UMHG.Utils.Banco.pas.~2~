@@ -1,0 +1,15 @@
+unit UMHG.Utils.Banco;
+
+interface
+
+uses
+  FireDac.Comp.Client,
+  FireDAC.Phys.MySQL,
+  FireDac.DApt,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Async,
+  Data.DB;
+
+implementation
+
+end.
