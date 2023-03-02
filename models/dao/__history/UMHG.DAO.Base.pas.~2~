@@ -1,0 +1,47 @@
+unit UMHG.DAO.Base;
+
+interface
+
+uses
+  UDAO.Intf, Generics.Collections;
+type
+  TDAOBase = class(TInterfacedObject, IDAO)
+  private
+    FTabela: String;
+  public
+    function ObterRegistros: TList<TObject>; virtual;
+    function BuscarPorId(const aId: Integer): TObject; virtual;
+    procedure AdicionarRegistro; virtual;
+    procedure ExcluirRegistro(const aId: Integer); virtual;
+
+  end;
+
+implementation
+
+uses
+  FireDAC.Comp.Client,
+  System.SysUtils,
+  UMHG.Utils.Banco;
+{ TDAOBase }
+
+procedure TDAOBase.AdicionarRegistro;
+begin
+
+end;
+
+function TDAOBase.BuscarPorId(const aId: Integer): TObject;
+begin
+
+end;
+
+procedure TDAOBase.ExcluirRegistro(const aId: Integer);
+begin
+
+end;
+
+function TDAOBase.ObterRegistros: TList<TObject>;
+begin
+
+end;
+
+end.

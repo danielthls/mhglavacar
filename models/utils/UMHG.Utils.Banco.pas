@@ -4,11 +4,17 @@ interface
 
 uses
   FireDac.Comp.Client,
-  FireDAC.Phys.MySQL,
   FireDac.DApt,
   FireDAC.Stan.Def,
   FireDAC.Stan.Async,
-  Data.DB;
+  Data.DB, SysUtils,
+  FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
+  FireDAC.VCLUI.Wait,
+  Winapi.Windows, Winapi.Messages, System.Variants, VCL.StdCtrls, Classes,
+   Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Generics.Collections,
+  Datasnap.DBClient, Vcl.Grids, Vcl.DBGrids, Data.SqlExpr;
+
 
 type
   TUtilBanco = class
@@ -18,8 +24,8 @@ type
     class procedure AbrirConexao;
     class procedure FecharConexao;
   public
-    class procedure InserirRegistro;
-    class function ExecutarConsulta(sSql: String): TObject; //Mais tarde alterar para classe pai dos bancos de dados
+    class procedure InserirRegistro(const aTabela: String);
+    class function ExecutarConsulta(aSQL: String): TFDQuery; //Mais tarde alterar para classe pai dos bancos de dados
     class procedure RemoverRegistro;
   end;
 implementation
@@ -30,23 +36,57 @@ class procedure TUtilBanco.AbrirConexao;
 begin
   FConexao := TFDConnection.Create(nil);
   FConexao.DriverName := 'SQLite';
-  FConexao.Params.Database := 'C:\sqlite\mhgCopia.db'; //Colocar um caminho que possa ser alterado depois
+  FConexao.Params.Add('Database=C:\sqlite\mhgCopia.db'); //Colocar um caminho que possa ser alterado depois
   FConexao.Open;
 end;
 
-class function TUtilBanco.ExecutarConsulta(sSql: String): TObject;
+class function TUtilBanco.ExecutarConsulta(aSQL: String): TFDQuery;
+var
+  xQuery: TFDQuery;
 begin
-
+  xQuery := TFDQuery.Create(nil);
+  try
+    Self.AbrirConexao;
+    xQuery.Connection := FConexao;
+    xQuery.Open(aSQL);
+    Result := xQuery;
+    Self.FecharConexao;
+  except
+    on e: Exception do
+      raise Exception.Create(e.Message);
+  end;
 end;
+
 
 class procedure TUtilBanco.FecharConexao;
 begin
-
+  if Assigned(FConexao) and (FConexao.Connected) then
+  begin
+    FConexao.Close;
+    FreeAndNil(FConexao);
+  end;
 end;
 
-class procedure TUtilBanco.InserirRegistro;
+class procedure TUtilBanco.InserirRegistro(const aTabela: String);
+const
+  COMANDO_INSERT = 'INSERT INTO %s (%s) VALUES (%s)';
+var
+  I: Integer;
+  xTableAdapter: TFDTableAdapter;
+  xMemTable: TFDMemTable;
+  xQuery: TFDQuery;
+  xColunas: String;
 begin
+  Self.AbrirConexao;
+  xTableAdapter := TFDTableAdapter.Create(nil);
+  xMemTable := TFDMemTable.Create(nil);
+  xQuery := TFDQuery.Create(nil);
 
+  try
+
+  finally
+
+  end;
 end;
 
 class procedure TUtilBanco.RemoverRegistro;

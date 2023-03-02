@@ -1,0 +1,18 @@
+unit UMHG.DAO.Intf;
+
+interface
+
+uses
+  Generics.Collections;
+
+type
+  IDAO = Interface
+    function ObterRegistros: TList<TObject>;
+    function BuscarPorId(const aId: Integer): TObject;
+    function ObterString: String;
+    procedure AdicionarRegistro;
+    procedure ExcluirRegistro(const aId: Integer);
+  End;
+implementation
+
+end.
