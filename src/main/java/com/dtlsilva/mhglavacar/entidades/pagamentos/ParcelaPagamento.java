@@ -21,6 +21,8 @@ public class ParcelaPagamento {
 	private Long id;
 	private Instant dataVencimento;
 	private Instant dataPagamento;
+	private Integer numeroParcela;
+	private Double valor;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_pagamento")
@@ -28,12 +30,14 @@ public class ParcelaPagamento {
 	
 	public ParcelaPagamento() {}
 
-	public ParcelaPagamento(Long id, Instant dataVencimento, Instant dataPagamento, Pagamento pagamento) {
+	public ParcelaPagamento(Long id, Instant dataVencimento, Instant dataPagamento, Pagamento pagamento, Integer numeroParcela, Double valor) {
 		super();
 		this.id = id;
 		this.dataVencimento = dataVencimento;
 		this.dataPagamento = dataPagamento;
 		this.pagamento = pagamento;
+		this.numeroParcela = numeroParcela;
+		this.valor = valor;
 	}
 
 	public Long getId() {
@@ -66,6 +70,23 @@ public class ParcelaPagamento {
 
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
+	}
+	
+	
+	public Integer getNumeroParcela() {
+		return numeroParcela;
+	}
+
+	public void setNumeroParcela(Integer numeroParcela) {
+		this.numeroParcela = numeroParcela;
+	}
+	
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
 	@Override

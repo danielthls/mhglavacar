@@ -1,9 +1,13 @@
 package com.dtlsilva.mhglavacar.entidades.servicos;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import com.dtlsilva.mhglavacar.entidades.pagamentos.Pagamento;
+import com.dtlsilva.mhglavacar.entidades.veiculos.Categoria;
 import com.dtlsilva.mhglavacar.entidades.veiculos.Veiculo;
 
 import jakarta.persistence.CascadeType;
@@ -11,6 +15,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -26,6 +31,9 @@ public class OrdemServico {
 	
 	@OneToOne(mappedBy = "ordemServico", cascade = CascadeType.ALL)
 	private Pagamento pagamento;
+	
+	@OneToMany(mappedBy = "id.ordem")
+	private Set<ItemOrdemServico> itens = new HashSet<>();
 	
 	public OrdemServico() {}
 
@@ -77,6 +85,13 @@ public class OrdemServico {
 
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
+	}
+	
+	public List<Servico> getServico() {
+		return itens
+				.stream()
+				.map(x -> x.getServico())
+				.toList();
 	}
 
 	@Override

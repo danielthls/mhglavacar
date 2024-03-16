@@ -1,8 +1,13 @@
 package com.dtlsilva.mhglavacar.entidades.veiculos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+
+import com.dtlsilva.mhglavacar.entidades.pagamentos.Preco;
+import com.dtlsilva.mhglavacar.entidades.servicos.Servico;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +27,9 @@ public class Categoria {
 	
 	@OneToMany(mappedBy = "categoria")
 	private List<Veiculo> veiculos = new ArrayList();
+	
+	@OneToMany(mappedBy = "id.categoria")
+	private Set<Preco> precos = new HashSet<>();
 	
 	public Categoria() {}
 
@@ -59,6 +67,13 @@ public class Categoria {
 	public List<Veiculo> getVeiculos() {
 		return veiculos;
 	}
+	
+	public List<Servico> getServicos() {
+		return precos
+				.stream()
+				.map(x -> x.getServico())
+				.toList();
+	}
 
 	@Override
 	public int hashCode() {
@@ -76,6 +91,7 @@ public class Categoria {
 		Categoria other = (Categoria) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
 	}
+	
 	
 	
 }
