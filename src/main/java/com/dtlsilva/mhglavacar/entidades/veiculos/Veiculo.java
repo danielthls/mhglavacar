@@ -1,8 +1,11 @@
 package com.dtlsilva.mhglavacar.entidades.veiculos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.dtlsilva.mhglavacar.entidades.pessoas.Pessoa;
+import com.dtlsilva.mhglavacar.entidades.servicos.OrdemServico;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = "tb_veiculos")
@@ -35,6 +39,9 @@ public class Veiculo {
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
+	
+	@OneToMany(mappedBy = "veiculo")
+	private List<OrdemServico> ordens = new ArrayList<>();
 	
 	public Veiculo() {}
 
@@ -111,6 +118,10 @@ public class Veiculo {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	public List<OrdemServico> getOrdens() {
+		return ordens;
 	}
 
 	@Override

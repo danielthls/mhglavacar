@@ -40,6 +40,7 @@ public class Pagamento {
 	
 	@OneToOne
 	@MapsId
+	@JoinColumn(name = "id_ordem")
 	private OrdemServico ordemServico;
 	
 	public Pagamento() {}

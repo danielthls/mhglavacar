@@ -42,12 +42,13 @@ public class Pessoa {
 	public Pessoa() {
 	}
 
-	public Pessoa(Long id, String nome, Long telefone, String email) {
+	public Pessoa(Long id, String nome, Long telefone, String email, Instant dataCadastro) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
+		this.dataCadastro = dataCadastro;
 	}
 
 	public Long getId() {
@@ -80,6 +81,14 @@ public class Pessoa {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Instant getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Instant dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	public List<Endereco> getEnderecos() {

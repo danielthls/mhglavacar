@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.dtlsilva.mhglavacar.entidades.pagamentos.Pagamento;
-import com.dtlsilva.mhglavacar.entidades.veiculos.Categoria;
 import com.dtlsilva.mhglavacar.entidades.veiculos.Veiculo;
 
 import jakarta.persistence.CascadeType;
@@ -15,6 +14,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -29,11 +30,15 @@ public class OrdemServico {
 	private Instant horaSaida;
 	private StatusOrdemServico status;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_veiculo")
+	private Veiculo veiculo;
+	
 	@OneToOne(mappedBy = "ordemServico", cascade = CascadeType.ALL)
 	private Pagamento pagamento;
 	
 	@OneToMany(mappedBy = "id.ordem")
-	private Set<ItemOrdemServico> itens = new HashSet<>();
+	private Set<ItemOrdemServico> itens = new HashSet<>();		
 	
 	public OrdemServico() {}
 
@@ -45,6 +50,7 @@ public class OrdemServico {
 		this.horaSaida = horaSaida;
 		this.status = status;
 		this.pagamento = pagamento;
+		this.veiculo = veiculo;
 	}
 
 	public Long getId() {
@@ -87,6 +93,14 @@ public class OrdemServico {
 		this.pagamento = pagamento;
 	}
 	
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+
 	public List<Servico> getServico() {
 		return itens
 				.stream()
