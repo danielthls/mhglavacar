@@ -19,6 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.dtlsilva.mhglavacar.dto.ServicoDTO;
 import com.dtlsilva.mhglavacar.services.ServicoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/servicos")
 public class ServicoController {
@@ -39,7 +41,7 @@ public class ServicoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ServicoDTO> insert(@RequestBody ServicoDTO dto) {
+	public ResponseEntity<ServicoDTO> insert(@Valid @RequestBody ServicoDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(dto.getId()).toUri();
