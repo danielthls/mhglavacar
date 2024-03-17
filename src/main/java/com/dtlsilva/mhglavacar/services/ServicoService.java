@@ -32,4 +32,18 @@ public class ServicoService {
 		return dto;
 	}
 	
+	@Transactional
+	public ServicoDTO insert(ServicoDTO dto) {
+		Servico entity = dtoToEntity(dto);
+		entity = repository.save(entity);
+		return new ServicoDTO(entity);
+	}
+	
+	private Servico dtoToEntity(ServicoDTO dto) {
+		Servico entity = new Servico();
+		entity.setNome(dto.getNome());
+		entity.setDescricao(dto.getDescricao());
+		return entity;
+		
+	}
 }
