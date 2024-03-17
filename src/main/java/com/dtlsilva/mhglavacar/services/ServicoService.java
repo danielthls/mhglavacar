@@ -48,6 +48,11 @@ public class ServicoService {
 		return new ServicoDTO(entity);
 	}
 	
+	@Transactional
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	
 	private void dtoToEntity(ServicoDTO dto, Servico entity) {
 		entity.setNome(dto.getNome());
 		entity.setDescricao(dto.getDescricao());
