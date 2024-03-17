@@ -34,16 +34,22 @@ public class ServicoService {
 	
 	@Transactional
 	public ServicoDTO insert(ServicoDTO dto) {
-		Servico entity = dtoToEntity(dto);
+		Servico entity = new Servico();
+		dtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new ServicoDTO(entity);
 	}
 	
-	private Servico dtoToEntity(ServicoDTO dto) {
-		Servico entity = new Servico();
+	@Transactional
+	public ServicoDTO update(Long id, ServicoDTO dto) {
+		Servico entity = repository.getReferenceById(id);
+		dtoToEntity(dto, entity);
+		entity = repository.save(entity);
+		return new ServicoDTO(entity);
+	}
+	
+	private void dtoToEntity(ServicoDTO dto, Servico entity) {
 		entity.setNome(dto.getNome());
 		entity.setDescricao(dto.getDescricao());
-		return entity;
-		
 	}
 }
