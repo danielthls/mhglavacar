@@ -12,6 +12,8 @@ INSERT INTO tb_pessoas(nome_pessoa, telefone, email, data_cadastro) VALUES ('Jo�
 INSERT INTO tb_pessoas(nome_pessoa, telefone, email, data_cadastro) VALUES ('Maria', '44444444', 'maria@mail.com', TIMESTAMP WITH TIME ZONE '2022-03-29T13:00:00Z');
 INSERT INTO tb_pessoas(nome_pessoa, telefone, email, data_cadastro) VALUES ('Marcos', '22222222', 'marcos@mail.com', TIMESTAMP WITH TIME ZONE '2022-08-12T13:00:00Z');
 INSERT INTO tb_pessoas(nome_pessoa, telefone, email, data_cadastro) VALUES ('Sabrina', '77777777', 'sabrina@mail.com', TIMESTAMP WITH TIME ZONE '2023-01-09T13:00:00Z');
+INSERT INTO tb_pessoas(nome_pessoa, telefone, email, data_cadastro) VALUES ('Sabrina', '77777777', 'sabrina@mail.com', TIMESTAMP WITH TIME ZONE '2023-01-09T13:00:00Z');
+INSERT INTO tb_pessoas(nome_pessoa, telefone, email, data_cadastro) VALUES ('Marcio Gil Thomaz', '41996084299', 'mhglavacar@mail.com', TIMESTAMP WITH TIME ZONE '2023-01-09T13:00:00Z');
 INSERT INTO tb_pessoas(nome_pessoa) VALUES ('Admin');
 
 INSERT INTO tb_enderecos(logradouro, numero, cep, complemento, referencia, id_municipio, id_pessoa) VALUES ('Rua do Bode', '12', '88999010', 'Apto 2', 'Na esquina', 1, 2);
@@ -20,6 +22,22 @@ INSERT INTO tb_enderecos(logradouro, numero, cep, referencia, id_municipio, id_p
 INSERT INTO tb_enderecos(logradouro, numero, cep, complemento, id_municipio, id_pessoa) VALUES ('Rua da Marmota', '8', '88999010', 'Apto 22', 2, 4);
 
 INSERT INTO tb_usuarios(usuario, senha, id_pessoa) VALUES ('admin', '1234', 5);
+INSERT INTO tb_usuarios(usuario, senha, id_pessoa, data_cadastro) VALUES ('marcio','1234', 6, '2024-11-16T21:12:00Z');
+
+INSERT INTO tb_roles(authority) VALUES ('ROLE_ADMIN')
+INSERT INTO tb_roles(authority) VALUES ('ROLE_GERENCIAL')
+INSERT INTO tb_roles(authority) VALUES ('ROLE_OPERACIONAL')
+INSERT INTO tb_roles(authority) VALUES ('ROLE_CLIENTE')
+
+INSERT INTO tb_usuarios_roles(id_role, id_usuario) VALUES (1,1)
+INSERT INTO tb_usuarios_roles(id_role, id_usuario) VALUES (2,1)
+INSERT INTO tb_usuarios_roles(id_role, id_usuario) VALUES (3,1)
+INSERT INTO tb_usuarios_roles(id_role, id_usuario) VALUES (4,1)
+INSERT INTO tb_usuarios_roles(id_role, id_usuario) VALUES (2,2)
+INSERT INTO tb_usuarios_roles(id_role, id_usuario) VALUES (3,2)
+INSERT INTO tb_usuarios_roles(id_role, id_usuario) VALUES (4,2)
+
+
 
 INSERT INTO tb_categorias(nome, descricao) VALUES ('Grande', 'Grandão');
 INSERT INTO tb_categorias(nome, descricao) VALUES ('Médio', 'Mais ou menos');

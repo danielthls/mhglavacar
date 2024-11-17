@@ -1,15 +1,10 @@
 package com.dtlsilva.mhglavacar.entidades.pessoas;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_usuarios")
@@ -34,6 +29,13 @@ public class Usuario {
 
 
 	private String usuarioUltimaModificacao;
+
+	@ManyToMany
+	@JoinTable(name = "tb_usuarios_roles",
+			joinColumns = @JoinColumn(name = "id_usuario"),
+			inverseJoinColumns = @JoinColumn(name = "id_role"))
+	private Set<Role> roles = new HashSet<>();
+
 
 	public Usuario() {
 	}
@@ -87,6 +89,15 @@ public class Usuario {
 
 	public Instant getDataUltimaModificacao() {
 		return dataUltimaModificacao;
+	}
+
+	public void addRole(Role role) {
+		roles.add(role);
+	}
+
+	public boolean hasRole(String roleName) {
+		return roles.stream()
+				.anyMatch(x -> x.getAuthority().equals(roleName));
 	}
 
 	public void setDataUltimaModificacao(Instant dataUltimaModificacao) {
