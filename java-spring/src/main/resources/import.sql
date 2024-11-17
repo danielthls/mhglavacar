@@ -21,8 +21,8 @@ INSERT INTO tb_enderecos(logradouro, numero, cep, complemento, referencia, id_mu
 INSERT INTO tb_enderecos(logradouro, numero, cep, referencia, id_municipio, id_pessoa) VALUES ('Rua do Pombo', '42', '88999010', 'Do lado do Tadashi', 3, 1);
 INSERT INTO tb_enderecos(logradouro, numero, cep, complemento, id_municipio, id_pessoa) VALUES ('Rua da Marmota', '8', '88999010', 'Apto 22', 2, 4);
 
-INSERT INTO tb_usuarios(usuario, senha, id_pessoa) VALUES ('admin', '1234', 5);
-INSERT INTO tb_usuarios(usuario, senha, id_pessoa, data_cadastro) VALUES ('marcio','1234', 6, '2024-11-16T21:12:00Z');
+INSERT INTO tb_usuarios(usuario, senha, id_pessoa) VALUES ('admin', '$2a$10$bU5MpTx98UHbCCE3I.71VuFKRghha9Gr8dyigcje1WbT7Wrw4M4NO', 5);
+INSERT INTO tb_usuarios(usuario, senha, id_pessoa, data_cadastro) VALUES ('marcio','$2a$10$bU5MpTx98UHbCCE3I.71VuFKRghha9Gr8dyigcje1WbT7Wrw4M4NO', 6, '2024-11-16T21:12:00Z');
 
 INSERT INTO tb_roles(authority) VALUES ('ROLE_ADMIN')
 INSERT INTO tb_roles(authority) VALUES ('ROLE_GERENCIAL')
